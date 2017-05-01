@@ -1,0 +1,30 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:id="@+id/LinearUp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/EditTextName"
+            android:hint="Enter Name"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/addOneContact"
+            android:text="Add Contact"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvContacts"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="14dp"
+        android:layout_below="@id/LinearUp"/>
+
+</RelativeLayout>
