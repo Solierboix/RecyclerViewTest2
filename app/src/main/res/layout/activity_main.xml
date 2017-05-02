@@ -8,13 +8,13 @@
         android:layout_height="wrap_content">
         <EditText
             android:id="@+id/EditTextName"
-            android:hint="Enter Name"
+            android:hint="Enter city name"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content" />
         <Button
             android:id="@+id/addOneContact"
-            android:text="Add Contact"
+            android:text="Add City"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content" />

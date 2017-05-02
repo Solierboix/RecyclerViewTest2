@@ -30,4 +30,12 @@
         android:paddingRight="16dp"
         android:textSize="10sp"
         />
+    <ImageView
+        android:layout_width="0dp"
+        android:scaleType="centerCrop"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:layout_weight="3"
+        android:layout_height="match_parent"
+        android:src="@drawable/sunny"/>
 </LinearLayout>
