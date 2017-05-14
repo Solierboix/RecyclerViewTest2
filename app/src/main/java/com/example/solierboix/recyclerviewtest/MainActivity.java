@@ -1,5 +1,6 @@
 package com.example.solierboix.recyclerviewtest;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
@@ -12,7 +13,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends AppCompatActivity implements AsyncResponse {
 
@@ -27,8 +27,7 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-        RecyclerView rvContacts = (RecyclerView) findViewById(R.id.rvContacts);
+        final RecyclerView rvContacts = (RecyclerView) findViewById(R.id.rvContacts);
 
         // Initialize contacts
         contacts = Contact.createContactsList(0);
@@ -40,6 +39,24 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
         rvContacts.setLayoutManager(new LinearLayoutManager(this));
         RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
         rvContacts.addItemDecoration(itemDecoration);
+        adapter.setOnItemClickListener(new ContactsAdapter.ClickListener(){
+
+            @Override
+            public void onItemClick(int position, View v) {
+
+
+                Toast.makeText(MainActivity.this, "onItemClick position: " + position, Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(MainActivity.this, DetailActivity.class);
+
+                startActivity(intent);
+            }
+
+            @Override
+            public void onItemLongClick(int position, View v) {
+                Toast.makeText(MainActivity.this, "onLongItemClick position: " + position, Toast.LENGTH_SHORT).show();
+            }
+        });
 
         ItemTouchHelper.SimpleCallback simpleItemTouchCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
 
@@ -56,8 +73,11 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
             }
         };
 
+
+
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleItemTouchCallback);
         itemTouchHelper.attachToRecyclerView(rvContacts);
+
 
 
         // That's all

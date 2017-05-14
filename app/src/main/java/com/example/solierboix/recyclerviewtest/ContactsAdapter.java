@@ -19,13 +19,15 @@ import java.util.List;
 // Create the basic adapter extending from RecyclerView.Adapter
 // Note that we specify the custom ViewHolder which gives us access to our views
 public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.ViewHolder> {
+    private static ClickListener clickListener;
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
         // Your holder should contain a member variable
         // for any view that will be set as you render a row
         public TextView nameTextView;
         public Button messageButton;
         public ImageView cityThumbnail;
+
 
         // We also create a constructor that accepts the entire item row
         // and does the view lookups to find each subview
@@ -33,12 +35,34 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.ViewHo
             // Stores the itemView in a public final member variable that can be used
             // to access the context from any ViewHolder instance.
             super(itemView);
+            itemView.setOnClickListener(this);
+            itemView.setOnLongClickListener(this);
 
             nameTextView = (TextView) itemView.findViewById(R.id.contact_name);
             messageButton = (Button) itemView.findViewById(R.id.message_button);
             cityThumbnail = (ImageView) itemView.findViewById(R.id.cityImageView);
         }
 
+        @Override
+        public void onClick(View v) {
+            clickListener.onItemClick(getAdapterPosition(), v);
+
+        }
+
+        @Override
+        public boolean onLongClick(View v) {
+            clickListener.onItemLongClick(getAdapterPosition(), v);
+            return false;
+        }
+
+    }
+    public void setOnItemClickListener(ClickListener clickListener){
+        ContactsAdapter.clickListener = clickListener;
+    }
+
+    public interface ClickListener {
+        void onItemClick(int position, View v);
+        void onItemLongClick(int position, View v);
     }
 
     @Override

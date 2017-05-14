@@ -20,6 +20,9 @@ public class Contact {
     public String getName() {
         return mName;
     }
+    public void setName(String value){
+        this.mName = value;
+    }
 
     public boolean isOnline() {
         return mOnline;
