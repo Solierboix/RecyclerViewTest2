@@ -8,6 +8,7 @@
     android:paddingBottom="5dp"
     >
     <ImageView
+        android:id="@+id/cityImageView"
         android:layout_width="0dp"
         android:scaleType="centerCrop"
         android:layout_weight="3"

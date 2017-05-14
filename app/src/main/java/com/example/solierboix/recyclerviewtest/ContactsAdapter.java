@@ -7,10 +7,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.solierboix.recyclerviewtest.Contact;
 import com.example.solierboix.recyclerviewtest.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -23,6 +25,7 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.ViewHo
         // for any view that will be set as you render a row
         public TextView nameTextView;
         public Button messageButton;
+        public ImageView cityThumbnail;
 
         // We also create a constructor that accepts the entire item row
         // and does the view lookups to find each subview
@@ -33,14 +36,10 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.ViewHo
 
             nameTextView = (TextView) itemView.findViewById(R.id.contact_name);
             messageButton = (Button) itemView.findViewById(R.id.message_button);
+            cityThumbnail = (ImageView) itemView.findViewById(R.id.cityImageView);
         }
 
-
     }
-
-
-
-
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -62,6 +61,8 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.ViewHo
         // Set item views basee on your views and data model
         TextView textView = viewHolder.nameTextView;
         textView.setText(contact.getName());
+        ImageView imageView = viewHolder.cityThumbnail;
+        Picasso.with(mContext).load(contact.getmCityThumb()).into(imageView);
         Button button = viewHolder.messageButton;
         button.setText("Message");
 
